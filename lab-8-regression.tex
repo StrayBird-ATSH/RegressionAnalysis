@@ -1,0 +1,217 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Lab 8 Regression},
+            pdfauthor={Chen Wang, Junke Wang, Zhuozhi Xiong},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx}
+% grffile has become a legacy package: https://ctan.org/pkg/grffile
+\IfFileExists{grffile.sty}{%
+\usepackage{grffile}
+}{}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Lab 8 Regression}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Chen Wang, Junke Wang, Zhuozhi Xiong}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{due 11/27/19}
+
+
+\begin{document}
+\maketitle
+
+\hypertarget{together-as-a-class}{%
+\section{Together as a class:}\label{together-as-a-class}}
+
+We are first going to install and load packages that we will need.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Install and load both the \texttt{modelr} package and the
+  \texttt{openintro} package. Load the \texttt{tidyverse} package.
+\end{enumerate}
+
+For this problem we will be using the data set called \texttt{gpa} from
+the \texttt{openintro} package. We are interest in association between
+the number of hours of sleep a student gets and their gpas.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Make a scatter plot and describe the association that you see.
+\item
+  Create the linear regression model for this relationship between hours
+  of sleep and GPA. We are regressing \texttt{gpa} onto
+  \texttt{hours\ of\ sleep} Call this model \texttt{gpa\_model}.
+\end{enumerate}
+
+\newpage
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  Find the correlation of this regression line and give the estimated
+  \(\beta\) values.
+\item
+  Interpret the \(\hat{\beta}\) values. There are 2.
+\end{enumerate}
+
+\newpage
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\item
+  Add the predicted values of GPA and the Residuals to the data frame
+  \texttt{gpa} using the \texttt{add\_predictions()} and
+  \texttt{add\_residuals()} functions from the \texttt{modelr} package.
+\item
+  Now we want to check the conditions needed to use the least squares
+  regression line. Create a qqplot and a residual plots in order to
+  check the conditions. Are the conditions meet? Are there any outliers?
+\end{enumerate}
+
+\newpage
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Conduct a hypothesis test to see if there is an association between
+  how much sleep a student gets and their GPA. What can we conclude?
+\end{enumerate}
+
+\newpage
+
+\hypertarget{on-your-own}{%
+\section{On your own:}\label{on-your-own}}
+
+In this problem, we will be using the \texttt{babies} data set from the
+\texttt{openintro} package. information about the data set can be found
+by running the following code in an \texttt{r} chunk: \texttt{?babies}.
+We are interested in finding out how the length of
+gestation(\texttt{gestation}), the age of the mother(\texttt{age}), the
+height of the mother(\texttt{height}), the mother's
+weight(\texttt{weight}), and whether or not this was the mother's first
+pregnacy (\texttt{parity}) are related to how much the baby will weight
+at birth (\texttt{bwt}).
+
+1.Load the data and save it as \texttt{baby}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Create the linear regression model that regresses \texttt{bwt} the
+  variables mentioned above. Print out the summary.
+\item
+  Interpret the coefficients for \texttt{gestation} and \texttt{parity}.
+\item
+  Does the intercept value have any meaning in context?
+\item
+  What is the Multiple \(R^2\) value for this model.
+\end{enumerate}
+
+\newpage
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\item
+  Add the residuals and predicted values to the data frame.
+\item
+  Create a residual plot and a qqplot. Comment on whether or not the
+  conditions are met to use the model you found in part 2.
+\end{enumerate}
+
+\newpage
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Obtain a 95\% confidence interval for the coefficient on
+  \texttt{gestation} and \texttt{age}. Interpret both confidence
+  intervals.
+\end{enumerate}
+
+
+\end{document}
