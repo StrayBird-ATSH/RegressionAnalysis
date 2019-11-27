@@ -14,6 +14,16 @@ We are first going to install and load packages that we will need.
 
 1. Install and load both the `modelr` package and the `openintro` package. Load the `tidyverse` package. 
 
+```{r}
+install.packages('modelr')
+install.packages('openintro')
+install.packages("tidyverse")
+library(modelr)
+library(openintro)
+library(tidyverse)
+```
+
+
 For this problem we will be using the data set called `gpa` from the `openintro` package. We are interest in association between the number of hours of sleep a student gets and their gpas. 
 
 2. Make a scatter plot and describe the association that you see. 
@@ -33,18 +43,50 @@ For this problem we will be using the data set called `gpa` from the `openintro`
 \newpage
 6. Add the predicted values of GPA and the Residuals to the data frame `gpa` using the `add_predictions()` and `add_residuals()` functions from the `modelr` package. 
 
+```{r}
+gpa<-gpa %>% 
+  add_predictions(gpa_model) %>% 
+  add_residuals(gpa_model)
+```
 
 
 
 7. Now we want to check the conditions needed to use the least squares regression line. Create a qqplot and a residual plots in order to check the conditions. Are the conditions meet? Are there any outliers? 
 
+1 - independence of data
 
+2 - linear relationship of GPA and hours of sleep
+
+
+4 - constant variability
+
+```{r}
+gpa %>% 
+  ggplot(aes(x=sleepnight,y=resid))+
+  geom_point()+
+  geom_hline(yintercept=0)
+```
+
+All of our assumptions check out. We can use linear regression.
 
 \newpage
 
 8. Conduct a hypothesis test to see if there is an association between how much sleep a student gets and their GPA. What can we conclude? 
 
+$$H_0: \beta_1 = 0 $$
+(The population slope is 0. There is no relationship between hours of sleep and GPA.)
 
+$$H_A: \beta_1 \ne 0$$
+(The population slope is not 0. There is a relationship between hours of sleep and GPA.)
+
+
+```{r}
+gpa_model %>% 
+  summary()
+```
+
+
+Our test statistic T = 0.0445. Our p-value is 0.658. Because our p-value>0.05, we fail to reject the null hyposis. We cannot say if there is a relationship between hours of sleep and GPA.
 \newpage
 # On your own:
 
