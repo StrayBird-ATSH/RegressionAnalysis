@@ -93,7 +93,7 @@ gpa<-gpa %>%
 7. Now we want to check the conditions needed to use the least squares regression line. Create a qqplot and a residual plots in order to check the conditions. Are the conditions meet? Are there any outliers?   
 1 - independence of data  
 2 - linear relationship of GPA and hours of sleep  
-
+3 - normality of residuals  
 4 - constant variability  
 
 <<<<<<< HEAD
@@ -213,9 +213,9 @@ baby <- baby %>%
 
 7. Create a residual plot and a qqplot. Comment on whether or not the conditions are met to use the model you found in part 2.  
 The conditions include:  
-1 - independence of data  
-2 - linear relationship   
-3 - normality of residuals   
+1 - independence of data    
+2 - linear relationship     
+3 - normality of residuals       
 4 - constant variability    
 
 ```{r}
