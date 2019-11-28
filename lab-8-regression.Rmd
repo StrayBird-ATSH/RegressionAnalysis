@@ -15,34 +15,103 @@ We are first going to install and load packages that we will need.
 1. Install and load both the `modelr` package and the `openintro` package. Load the `tidyverse` package. 
 
 For this problem we will be using the data set called `gpa` from the `openintro` package. We are interest in association between the number of hours of sleep a student gets and their gpas. 
+```{r}
+install.packages("modelr")
+install.packages("openintro")
+```
+```{r}
+library(modelr)
+library(openintro)
+library(tidyverse)
+```
+
 
 2. Make a scatter plot and describe the association that you see. 
+```{r}
+gpa %>% 
+  ggplot(aes(x=sleepnight, y=gpa)) +
+  geom_point()
+```
+It doesn't seem that there is a relationship between hours of sleep and GPA. We can't tell if there is a positive or a negative trend.
 
 3. Create the linear regression model for this relationship between hours of sleep and GPA. We are regressing `gpa` onto `hours of sleep` Call this model `gpa_model`. 
+```{r}
+gpa_model <- lm(gpa ~ sleepnight, data=gpa)
+
+gpa_model %>% 
+  summary()
+```
+
 
 \newpage
 4. Find the correlation of this regression line and give the estimated $\beta$ values.
+```{r}
+correlation <- sqrt(0.003719)#add sign of intercept
+correlation
 
-5. Interpret the $\hat{\beta}$ values. There are 2. 
+cor(gpa$gpa, gpa$sleepnight)
+```
+the correlation is 0.061. The estimated intercept is 3.46. The estimated slope is 0.01983.
 
+5. Interpret the $\hat{\beta}$ values. There are 2.   
 
+GPA = intercept + slope(hours of sleep)    
+
+We can intercept the intercept as us having an estimated GPA of 3.46 when we have 0 hours of sleep.    
+We can interpret the slope as for every 1 extra hour of sleep we get, we will increase our GPA by 0.01983 points.  
+ 
 
 
 
 
 \newpage
 6. Add the predicted values of GPA and the Residuals to the data frame `gpa` using the `add_predictions()` and `add_residuals()` functions from the `modelr` package. 
+```{r}
+gpa<-gpa %>% 
+  add_predictions(gpa_model) %>% 
+  add_residuals(gpa_model)
+```
 
 
 
 
-7. Now we want to check the conditions needed to use the least squares regression line. Create a qqplot and a residual plots in order to check the conditions. Are the conditions meet? Are there any outliers? 
+7. Now we want to check the conditions needed to use the least squares regression line. Create a qqplot and a residual plots in order to check the conditions. Are the conditions meet? Are there any outliers?   
+1 - independence of data  
+2 - linear relationship of GPA and hours of sleep  
 
+4 - constant variability  
+
+```{r}
+gpa %>% 
+  ggplot(aes(sample=resid))+
+  geom_qq()
+```
+
+```{r}
+gpa %>% 
+  ggplot(aes(x=sleepnight,y=resid))+
+  geom_point()+
+  geom_hline(yintercept=0)
+```
+
+All of our assumptions check out. We can use linear regression.
 
 
 \newpage
 
-8. Conduct a hypothesis test to see if there is an association between how much sleep a student gets and their GPA. What can we conclude? 
+8. Conduct a hypothesis test to see if there is an association between how much sleep a student gets and their GPA. What can we conclude?    
+
+$H_0: \beta_1 = 0$  
+(We assume the slope is 0. Hours of sleep and GPA have no linear relationship.)  
+$H_0: \beta_1\ne0$  
+(We want to prove that the slope is not 0. That hours of sleep and GPA have a linear relationship of some kind.)  
+
+```{r}
+gpa_model %>% 
+  summary()
+```
+Our t-statistics is 0.445, our p-value is 0.658. Because our p-value is greater than 0.05, we fail to reject the null hypothesis, we cannot say there is a linear relationship between hours of sleep and GPA.
+
 
 
 \newpage
@@ -51,31 +120,118 @@ For this problem we will be using the data set called `gpa` from the `openintro`
 In this problem, we will be using the `babies` data set from the `openintro` package. information about the data set can be found by running the following code in an `r` chunk: `?babies`. We are interested in finding out how the length of gestation(`gestation`), the age of the mother(`age`), the height of the mother(`height`), the mother's weight(`weight`), and whether or not this was the mother's first pregnacy (`parity`) are related to how much the baby will weight at birth (`bwt`). 
 
 
-1.Load the data and save it as `baby`.
-
-
-2. Create the linear regression model that regresses `bwt` the variables mentioned above. Print out the summary. 
-
-
-3. Interpret the coefficients for `gestation` and `parity`.
-
-
-4. Does the intercept value have any meaning in context?
+1.Load the data and save it as `baby`.  
+```{r}
+baby <- babies
+```
 
 
 
-5. What is the Multiple $R^2$ value for this model.
+2. Create the linear regression model that regresses `bwt` the variables mentioned above. Print out the summary.   
+```{r}
+baby_model <- lm(bwt ~ gestation + age + height + weight + parity, data= baby)
+
+baby_model %>% 
+  summary()
+```
+
+
+
+
+3. Interpret the coefficients for `gestation` and `parity`.  
+The coefficient for gestination is 0.46579, which means when other explanatory variables don't change, and only gestination increases by 1 unit, the weight of baby at birth will increase by 0.46579 unit.  
+The coefficient for parity is -2.96394, which means when other explanatory variables don't change, and only parity increases by 1 unit, the weight of baby at birth will decrease by 2.96394 units. 
+
+
+
+4. Does the intercept value have any meaning in context?  
+Theoretically, the intercept value means when gestation, age, height, weight and parity are all 0, then the weight of the baby will -86,59435. But since these factors can not be 0, and baby's weight can not be negative, so the intercept value doesn't have meaning in context.
+
+
+
+5. What is the Multiple $R^2$ value for this model.  
+```{r}
+baby_model %>% 
+  summary()
+```
+We can see that multiple $R^2$ for this model is 0.2106.
 
 
 \newpage
 6. Add the residuals and predicted values to the data frame.
+```{r}
+baby <- baby %>% 
+  add_predictions(baby_model) %>% 
+  add_residuals(baby_model)
+```
 
-7. Create a residual plot and a qqplot. Comment on whether or not the conditions are met to use the model you found in part 2. 
 
+7. Create a residual plot and a qqplot. Comment on whether or not the conditions are met to use the model you found in part 2.  
+The conditions include:  
+1 - independence of data  
+2 - linear relationship   
+3 - normality of residuals   
+4 - constant variability    
+
+```{r}
+baby %>% 
+  ggplot(aes(sample=resid))+
+  geom_qq()
+```
+
+```{r}
+baby %>% 
+  ggplot(aes(x=gestation,y=resid))+
+  geom_point()+
+  geom_hline(yintercept=0)
+```
+
+```{r}
+baby %>% 
+  ggplot(aes(x=age,y=resid))+
+  geom_point()+
+  geom_hline(yintercept=0)
+```
+```{r}
+baby %>% 
+  ggplot(aes(x=height,y=resid))+
+  geom_point()+
+  geom_hline(yintercept=0)
+```
+
+```{r}
+baby %>% 
+  ggplot(aes(x=weight,y=resid))+
+  geom_point()+
+  geom_hline(yintercept=0)
+```
+```{r}
+baby %>% 
+  ggplot(aes(x=factor(parity),y=resid))+
+  geom_boxplot()+
+  xlab("parity")
+```
+Therefore, from the diagrams above, we can see that all the conditions are met: from the qqplot we can see the residual nearly follows normality and from residual plot we can see the variability is constant, so we can use a linear regression.
 
 \newpage
 8. Obtain a 95% confidence interval for the coefficient on `gestation` and `age`. Interpret both confidence intervals.  
+```{r}
+baby_model %>% 
+  summary()
+```
+```{r}
+z_cri <- qnorm(0.025)
+l1 <- 0.46579 + z_cri*0.02992
+r1 <- 0.46579 - z_cri*0.02992
+l1
+r1
+l2 <- 0.05233 + z_cri*0.08820
+r2 <- 0.05233 - z_cri*0.08820
+l2
+r2
 
+```
 
-
+The 95% confidence interval for coefficient on gestation is (0.4071479, 0.5244321), which means we are 95% confident that the coefficient on gestation is between 0.4071479 and 0.5244321.  
+The 95% confidence interval for coefficient on age is (-0.1205388, 0.2251988), which means we are 95% confident that the coefficient on age is between -0.1205388 and 0.2251988. 
 
