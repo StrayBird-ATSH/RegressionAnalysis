@@ -25,10 +25,7 @@ library(tidyverse)
 
 
 For this problem we will be using the data set called `gpa` from the `openintro` package. We are interest in association between the number of hours of sleep a student gets and their gpas. 
-```{r}
-install.packages("modelr")
-install.packages("openintro")
-```
+
 ```{r}
 library(modelr)
 library(openintro)
@@ -96,7 +93,6 @@ gpa<-gpa %>%
 
 4 - constant variability  
 
-<<<<<<< HEAD
 ```{r}
 gpa %>% 
   ggplot(aes(sample=resid))+
@@ -111,14 +107,7 @@ gpa %>%
 ```
 
 All of our assumptions check out. We can use linear regression.
-=======
-1 - independence of data
 
-2 - linear relationship of GPA and hours of sleep
-
-
-4 - constant variability
->>>>>>> ba9d74e8d944f5180aec53926d33f133f71d592c
 
 ```{r}
 gpa %>% 
