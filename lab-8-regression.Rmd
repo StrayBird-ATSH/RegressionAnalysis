@@ -39,6 +39,7 @@ gpa %>%
   ggplot(aes(x=sleepnight, y=gpa)) +
   geom_point()
 ```
+
 It doesn't seem that there is a relationship between hours of sleep and GPA. We can't tell if there is a positive or a negative trend.
 
 3. Create the linear regression model for this relationship between hours of sleep and GPA. We are regressing `gpa` onto `hours of sleep` Call this model `gpa_model`. 
@@ -52,19 +53,21 @@ gpa_model %>%
 
 \newpage
 4. Find the correlation of this regression line and give the estimated $\beta$ values.
+
 ```{r}
 correlation <- sqrt(0.003719)#add sign of intercept
 correlation
 
 cor(gpa$gpa, gpa$sleepnight)
 ```
-the correlation is 0.061. The estimated intercept is 3.46. The estimated slope is 0.01983.
+
+The correlation is 0.061. The estimated intercept is 3.46. The estimated slope is 0.01983.
 
 5. Interpret the $\hat{\beta}$ values. There are 2.   
 
 GPA = intercept + slope(hours of sleep)    
 
-We can intercept the intercept as us having an estimated GPA of 3.46 when we have 0 hours of sleep.    
+We can interpret the intercept as us having an estimated GPA of 3.46 when we have 0 hours of sleep.    
 We can interpret the slope as for every 1 extra hour of sleep we get, we will increase our GPA by 0.01983 points.  
  
 
@@ -106,7 +109,6 @@ gpa %>%
   geom_hline(yintercept=0)
 ```
 
-All of our assumptions check out. We can use linear regression.
 
 
 ```{r}
@@ -122,18 +124,6 @@ All of our assumptions check out. We can use linear regression.
 
 8. Conduct a hypothesis test to see if there is an association between how much sleep a student gets and their GPA. What can we conclude?    
 
-$H_0: \beta_1 = 0$  
-(We assume the slope is 0. Hours of sleep and GPA have no linear relationship.)  
-$H_0: \beta_1\ne0$  
-(We want to prove that the slope is not 0. That hours of sleep and GPA have a linear relationship of some kind.)  
-
-```{r}
-gpa_model %>% 
-  summary()
-```
-Our t-statistics is 0.445, our p-value is 0.658. Because our p-value is greater than 0.05, we fail to reject the null hypothesis, we cannot say there is a linear relationship between hours of sleep and GPA.
-
-
 $$H_0: \beta_1 = 0 $$
 (The population slope is 0. There is no relationship between hours of sleep and GPA.)
 
@@ -147,8 +137,9 @@ gpa_model %>%
 ```
 
 
-Our test statistic T = 0.0445. Our p-value is 0.658. Because our p-value>0.05, we fail to reject the null hyposis. We cannot say if there is a relationship between hours of sleep and GPA.
+Our test statistic T = 0.0445. Our p-value is 0.658. Because our p-value>0.05, we fail to reject the null hypothesis. We cannot say if there is a relationship between hours of sleep and GPA.
 \newpage
+
 # On your own:
 
 In this problem, we will be using the `babies` data set from the `openintro` package. information about the data set can be found by running the following code in an `r` chunk: `?babies`. We are interested in finding out how the length of gestation(`gestation`), the age of the mother(`age`), the height of the mother(`height`), the mother's weight(`weight`), and whether or not this was the mother's first pregnacy (`parity`) are related to how much the baby will weight at birth (`bwt`). 

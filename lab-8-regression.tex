@@ -207,11 +207,7 @@ We are first going to install and load packages that we will need.
 \end{Shaded}
 
 \begin{verbatim}
-<<<<<<< HEAD
 ## -- Attaching packages ---------------------------------------------------------------------------- tidyverse 1.3.0 --
-=======
-## -- Attaching packages --------------------------------------------------- tidyverse 1.3.0 --
->>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 \end{verbatim}
 
 \begin{verbatim}
@@ -222,11 +218,7 @@ We are first going to install and load packages that we will need.
 \end{verbatim}
 
 \begin{verbatim}
-<<<<<<< HEAD
 ## -- Conflicts ------------------------------------------------------------------------------- tidyverse_conflicts() --
-=======
-## -- Conflicts ------------------------------------------------------ tidyverse_conflicts() --
->>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 \end{verbatim}
@@ -237,31 +229,6 @@ the number of hours of sleep a student gets and their gpas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-<<<<<<< HEAD
-=======
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"modelr"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Installing package into '/home/rstudio-user/R/x86_64-pc-linux-gnu-library/3.6'
-## (as 'lib' is unspecified)
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"openintro"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Installing package into '/home/rstudio-user/R/x86_64-pc-linux-gnu-library/3.6'
-## (as 'lib' is unspecified)
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
->>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 \KeywordTok{library}\NormalTok{(modelr)}
 \KeywordTok{library}\NormalTok{(openintro)}
 \KeywordTok{library}\NormalTok{(tidyverse)}
@@ -284,7 +251,8 @@ the number of hours of sleep a student gets and their gpas.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-4-1.pdf}
+\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-3-1.pdf}
+
 It doesn't seem that there is a relationship between hours of sleep and
 GPA. We can't tell if there is a positive or a negative trend.
 
@@ -360,7 +328,7 @@ GPA. We can't tell if there is a positive or a negative trend.
 ## [1] 0.06098308
 \end{verbatim}
 
-the correlation is 0.061. The estimated intercept is 3.46. The estimated
+The correlation is 0.061. The estimated intercept is 3.46. The estimated
 slope is 0.01983.
 
 \begin{enumerate}
@@ -373,7 +341,7 @@ slope is 0.01983.
 
 GPA = intercept + slope(hours of sleep)
 
-We can intercept the intercept as us having an estimated GPA of 3.46
+We can interpret the intercept as us having an estimated GPA of 3.46
 when we have 0 hours of sleep.\\
 We can interpret the slope as for every 1 extra hour of sleep we get, we
 will increase our GPA by 0.01983 points.
@@ -421,9 +389,6 @@ will increase our GPA by 0.01983 points.
   4 - constant variability
 \end{enumerate}
 
-\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}
-HEAD
-
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{gpa }\OperatorTok{%>%}\StringTok{ }
@@ -432,11 +397,7 @@ HEAD
 \end{Highlighting}
 \end{Shaded}
 
-<<<<<<< HEAD
 \includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-8-1.pdf}
-=======
-\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-9-1.pdf}
->>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -447,25 +408,7 @@ HEAD
 \end{Highlighting}
 \end{Shaded}
 
-<<<<<<< HEAD
 \includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-9-1.pdf}
-
-All of our assumptions check out. We can use linear regression.
-=======
-\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-10-1.pdf}
-
-\hypertarget{all-of-our-assumptions-check-out.-we-can-use-linear-regression.}{%
-\section{All of our assumptions check out. We can use linear
-regression.}\label{all-of-our-assumptions-check-out.-we-can-use-linear-regression.}}
-
-1 - independence of data
-
-2 - linear relationship of GPA and hours of sleep
-
-4 - constant variability
-\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}
-ba9d74e8d944f5180aec53926d33f133f71d592c
->>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -476,11 +419,7 @@ ba9d74e8d944f5180aec53926d33f133f71d592c
 \end{Highlighting}
 \end{Shaded}
 
-<<<<<<< HEAD
 \includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-10-1.pdf}
-=======
-\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-11-1.pdf}
->>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 
 All of our assumptions check out. We can use linear regression.
 
@@ -495,48 +434,8 @@ All of our assumptions check out. We can use linear regression.
   how much sleep a student gets and their GPA. What can we conclude?
 \end{enumerate}
 
-\(H_0: \beta_1 = 0\)\\
-(We assume the slope is 0. Hours of sleep and GPA have no linear
-relationship.)\\
-\(H_0: \beta_1\ne0\)\\
-(We want to prove that the slope is not 0. That hours of sleep and GPA
-have a linear relationship of some kind.)
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{gpa_model }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{summary}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = gpa ~ sleepnight, data = gpa)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.67898 -0.22123  0.02102  0.21627  1.08110 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  3.46000    0.31819  10.874 4.14e-15 ***
-## sleepnight   0.01983    0.04458   0.445    0.658    
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.3381 on 53 degrees of freedom
-## Multiple R-squared:  0.003719,   Adjusted R-squared:  -0.01508 
-## F-statistic: 0.1978 on 1 and 53 DF,  p-value: 0.6583
-\end{verbatim}
-
-Our t-statistics is 0.445, our p-value is 0.658. Because our p-value is
-greater than 0.05, we fail to reject the null hypothesis, we cannot say
-there is a linear relationship between hours of sleep and GPA.
-
 \[H_0: \beta_1 = 0 \] (The population slope is 0. There is no
 relationship between hours of sleep and GPA.)
-<<<<<<< HEAD
 
 \[H_A: \beta_1 \ne 0\] (The population slope is not 0. There is a
 relationship between hours of sleep and GPA.)
@@ -548,19 +447,6 @@ relationship between hours of sleep and GPA.)
 \end{Highlighting}
 \end{Shaded}
 
-=======
-
-\[H_A: \beta_1 \ne 0\] (The population slope is not 0. There is a
-relationship between hours of sleep and GPA.)
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{gpa_model }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{summary}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
->>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 \begin{verbatim}
 ## 
 ## Call:
@@ -583,9 +469,9 @@ relationship between hours of sleep and GPA.)
 \end{verbatim}
 
 Our test statistic T = 0.0445. Our p-value is 0.658. Because our
-p-value\textgreater{}0.05, we fail to reject the null hyposis. We cannot
-say if there is a relationship between hours of sleep and GPA. \newpage
-\# On your own:
+p-value\textgreater{}0.05, we fail to reject the null hypothesis. We
+cannot say if there is a relationship between hours of sleep and GPA.
+\newpage \# On your own:
 
 In this problem, we will be using the \texttt{babies} data set from the
 \texttt{openintro} package. information about the data set can be found
@@ -753,11 +639,7 @@ We can see that multiple \(R^2\) for this model is 0.2106.
 ## Warning: Removed 52 rows containing non-finite values (stat_qq).
 \end{verbatim}
 
-<<<<<<< HEAD
-\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-17-1.pdf}
-=======
-\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-18-1.pdf}
->>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
+\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-16-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -772,11 +654,7 @@ We can see that multiple \(R^2\) for this model is 0.2106.
 ## Warning: Removed 52 rows containing missing values (geom_point).
 \end{verbatim}
 
-<<<<<<< HEAD
-\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-18-1.pdf}
-=======
-\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-19-1.pdf}
->>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
+\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-17-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -791,11 +669,7 @@ We can see that multiple \(R^2\) for this model is 0.2106.
 ## Warning: Removed 52 rows containing missing values (geom_point).
 \end{verbatim}
 
-<<<<<<< HEAD
-\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-19-1.pdf}
-=======
-\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-20-1.pdf}
->>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
+\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-18-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -810,11 +684,7 @@ We can see that multiple \(R^2\) for this model is 0.2106.
 ## Warning: Removed 52 rows containing missing values (geom_point).
 \end{verbatim}
 
-<<<<<<< HEAD
-\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-20-1.pdf}
-=======
-\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-21-1.pdf}
->>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
+\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-19-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -829,11 +699,7 @@ We can see that multiple \(R^2\) for this model is 0.2106.
 ## Warning: Removed 52 rows containing missing values (geom_point).
 \end{verbatim}
 
-<<<<<<< HEAD
-\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-21-1.pdf}
-=======
-\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-22-1.pdf}
->>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
+\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-20-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -848,11 +714,7 @@ We can see that multiple \(R^2\) for this model is 0.2106.
 ## Warning: Removed 52 rows containing non-finite values (stat_boxplot).
 \end{verbatim}
 
-<<<<<<< HEAD
-\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-22-1.pdf}
-=======
-\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-23-1.pdf}
->>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
+\includegraphics{lab-8-regression_files/figure-latex/unnamed-chunk-21-1.pdf}
 Therefore, from the diagrams above, we can see that all the conditions
 are met: from the qqplot we can see the residual nearly follows
 normality and from residual plot we can see the variability is constant,
