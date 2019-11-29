@@ -17,6 +17,7 @@ We are first going to install and load packages that we will need.
 
 ```r
 install.packages('modelr')
+<<<<<<< HEAD
 ```
 
 ```
@@ -26,6 +27,8 @@ install.packages('modelr')
 
 ```r
 install.packages('openintro')
+=======
+>>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 ```
 
 ```
@@ -34,6 +37,18 @@ install.packages('openintro')
 ```
 
 ```r
+<<<<<<< HEAD
+=======
+install.packages('openintro')
+```
+
+```
+## Installing package into '/home/rstudio-user/R/x86_64-pc-linux-gnu-library/3.6'
+## (as 'lib' is unspecified)
+```
+
+```r
+>>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 install.packages("tidyverse")
 ```
 
@@ -67,7 +82,11 @@ library(tidyverse)
 ```
 
 ```
+<<<<<<< HEAD
 ## -- Attaching packages ---------------------------------------------------------------------------- tidyverse 1.3.0 --
+=======
+## -- Attaching packages --------------------------------------------------- tidyverse 1.3.0 --
+>>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 ```
 
 ```
@@ -78,7 +97,11 @@ library(tidyverse)
 ```
 
 ```
+<<<<<<< HEAD
 ## -- Conflicts ------------------------------------------------------------------------------- tidyverse_conflicts() --
+=======
+## -- Conflicts ------------------------------------------------------ tidyverse_conflicts() --
+>>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 ```
@@ -86,6 +109,26 @@ library(tidyverse)
 
 For this problem we will be using the data set called `gpa` from the `openintro` package. We are interest in association between the number of hours of sleep a student gets and their gpas. 
 
+<<<<<<< HEAD
+=======
+```r
+install.packages("modelr")
+```
+
+```
+## Installing package into '/home/rstudio-user/R/x86_64-pc-linux-gnu-library/3.6'
+## (as 'lib' is unspecified)
+```
+
+```r
+install.packages("openintro")
+```
+
+```
+## Installing package into '/home/rstudio-user/R/x86_64-pc-linux-gnu-library/3.6'
+## (as 'lib' is unspecified)
+```
+>>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 
 ```r
 library(modelr)
@@ -102,7 +145,7 @@ gpa %>%
   geom_point()
 ```
 
-![](lab-8-regression_files/figure-latex/unnamed-chunk-3-1.pdf)<!-- --> 
+![](lab-8-regression_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
 It doesn't seem that there is a relationship between hours of sleep and GPA. We can't tell if there is a positive or a negative trend.
 
 3. Create the linear regression model for this relationship between hours of sleep and GPA. We are regressing `gpa` onto `hours of sleep` Call this model `gpa_model`. 
@@ -189,9 +232,10 @@ gpa<-gpa %>%
 7. Now we want to check the conditions needed to use the least squares regression line. Create a qqplot and a residual plots in order to check the conditions. Are the conditions meet? Are there any outliers?   
 1 - independence of data  
 2 - linear relationship of GPA and hours of sleep  
-
+3 - normality of residuals  
 4 - constant variability  
 
+<<<<<<< HEAD
 
 ```r
 gpa %>% 
@@ -199,7 +243,11 @@ gpa %>%
   geom_qq()
 ```
 
+<<<<<<< HEAD
 ![](lab-8-regression_files/figure-latex/unnamed-chunk-8-1.pdf)<!-- --> 
+=======
+![](lab-8-regression_files/figure-latex/unnamed-chunk-9-1.pdf)<!-- --> 
+>>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 
 
 ```r
@@ -209,10 +257,33 @@ gpa %>%
   geom_hline(yintercept=0)
 ```
 
+<<<<<<< HEAD
 ![](lab-8-regression_files/figure-latex/unnamed-chunk-9-1.pdf)<!-- --> 
+=======
+![](lab-8-regression_files/figure-latex/unnamed-chunk-10-1.pdf)<!-- --> 
+>>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 
 All of our assumptions check out. We can use linear regression.
+=======
+1 - independence of data
 
+2 - linear relationship of GPA and hours of sleep
+
+
+4 - constant variability
+>>>>>>> ba9d74e8d944f5180aec53926d33f133f71d592c
+
+
+```r
+gpa %>% 
+  ggplot(aes(x=sleepnight,y=resid))+
+  geom_point()+
+  geom_hline(yintercept=0)
+```
+
+![](lab-8-regression_files/figure-latex/unnamed-chunk-11-1.pdf)<!-- --> 
+
+All of our assumptions check out. We can use linear regression.
 
 
 ```r
@@ -276,6 +347,7 @@ $$H_A: \beta_1 \ne 0$$
 gpa_model %>% 
   summary()
 ```
+<<<<<<< HEAD
 
 ```
 ## 
@@ -299,6 +371,31 @@ gpa_model %>%
 ```
 
 
+=======
+
+```
+## 
+## Call:
+## lm(formula = gpa ~ sleepnight, data = gpa)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.67898 -0.22123  0.02102  0.21627  1.08110 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  3.46000    0.31819  10.874 4.14e-15 ***
+## sleepnight   0.01983    0.04458   0.445    0.658    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.3381 on 53 degrees of freedom
+## Multiple R-squared:  0.003719,	Adjusted R-squared:  -0.01508 
+## F-statistic: 0.1978 on 1 and 53 DF,  p-value: 0.6583
+```
+
+
+>>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 Our test statistic T = 0.0445. Our p-value is 0.658. Because our p-value>0.05, we fail to reject the null hyposis. We cannot say if there is a relationship between hours of sleep and GPA.
 \newpage
 # On your own:
@@ -412,9 +509,9 @@ baby <- baby %>%
 
 7. Create a residual plot and a qqplot. Comment on whether or not the conditions are met to use the model you found in part 2.  
 The conditions include:  
-1 - independence of data  
-2 - linear relationship   
-3 - normality of residuals   
+1 - independence of data    
+2 - linear relationship     
+3 - normality of residuals       
 4 - constant variability    
 
 
@@ -428,7 +525,11 @@ baby %>%
 ## Warning: Removed 52 rows containing non-finite values (stat_qq).
 ```
 
+<<<<<<< HEAD
 ![](lab-8-regression_files/figure-latex/unnamed-chunk-17-1.pdf)<!-- --> 
+=======
+![](lab-8-regression_files/figure-latex/unnamed-chunk-18-1.pdf)<!-- --> 
+>>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 
 
 ```r
@@ -442,7 +543,11 @@ baby %>%
 ## Warning: Removed 52 rows containing missing values (geom_point).
 ```
 
+<<<<<<< HEAD
 ![](lab-8-regression_files/figure-latex/unnamed-chunk-18-1.pdf)<!-- --> 
+=======
+![](lab-8-regression_files/figure-latex/unnamed-chunk-19-1.pdf)<!-- --> 
+>>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 
 
 ```r
@@ -456,7 +561,11 @@ baby %>%
 ## Warning: Removed 52 rows containing missing values (geom_point).
 ```
 
+<<<<<<< HEAD
 ![](lab-8-regression_files/figure-latex/unnamed-chunk-19-1.pdf)<!-- --> 
+=======
+![](lab-8-regression_files/figure-latex/unnamed-chunk-20-1.pdf)<!-- --> 
+>>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 
 ```r
 baby %>% 
@@ -469,7 +578,11 @@ baby %>%
 ## Warning: Removed 52 rows containing missing values (geom_point).
 ```
 
+<<<<<<< HEAD
 ![](lab-8-regression_files/figure-latex/unnamed-chunk-20-1.pdf)<!-- --> 
+=======
+![](lab-8-regression_files/figure-latex/unnamed-chunk-21-1.pdf)<!-- --> 
+>>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 
 
 ```r
@@ -483,7 +596,11 @@ baby %>%
 ## Warning: Removed 52 rows containing missing values (geom_point).
 ```
 
+<<<<<<< HEAD
 ![](lab-8-regression_files/figure-latex/unnamed-chunk-21-1.pdf)<!-- --> 
+=======
+![](lab-8-regression_files/figure-latex/unnamed-chunk-22-1.pdf)<!-- --> 
+>>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 
 ```r
 baby %>% 
@@ -496,7 +613,11 @@ baby %>%
 ## Warning: Removed 52 rows containing non-finite values (stat_boxplot).
 ```
 
+<<<<<<< HEAD
 ![](lab-8-regression_files/figure-latex/unnamed-chunk-22-1.pdf)<!-- --> 
+=======
+![](lab-8-regression_files/figure-latex/unnamed-chunk-23-1.pdf)<!-- --> 
+>>>>>>> bc3c77c6e31439362ddd1b04c00724b4e550e915
 Therefore, from the diagrams above, we can see that all the conditions are met: from the qqplot we can see the residual nearly follows normality and from residual plot we can see the variability is constant, so we can use a linear regression.
 
 \newpage
